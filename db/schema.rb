@@ -31,8 +31,8 @@ ActiveRecord::Schema.define(version: 20170101094008) do
     t.integer  "teacher_id"
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
-    t.boolean  "open",          default: false
-    t.float    "fcredit"
+    #t.boolean  "open",          default: false
+    #t.float    "fcredit"
   end
 
   create_table "grades", force: :cascade do |t|
