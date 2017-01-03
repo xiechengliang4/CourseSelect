@@ -31,6 +31,7 @@ Rails.application.routes.draw do
 
   resources :grades, only: [:index, :update]
   resources :users
+  resources :account_activations, only: [:edit]
 
   get 'sessions/login' => 'sessions#new'
   post 'sessions/login' => 'sessions#create'
