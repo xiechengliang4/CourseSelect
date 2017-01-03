@@ -1,5 +1,4 @@
 <%= form_for @course, html: {class: 'form-horizontal', role: 'form'} do |f| %>
-    <%= render 'shared/error_messages', :object => @course %>
 
     <div class="form-group">
       <%= f.label "课程名", class: 'col-sm-3 control-label' %>
@@ -50,13 +49,23 @@
         </div>
       </div>
     </div>
-
+    
     <div class="form-group">
-      <%= f.label "课时学分", class: 'col-sm-3 control-label' %>
+      <%= f.label "课时/学分", class: 'col-sm-3 control-label' %>
       <div class="col-sm-9">
         <div class="input-group">
           <div class="input-group-addon"><span class="glyphicon glyphicon-arrow-right"></span></div>
           <%= f.text_field :credit, class: 'form-control', placeholder: "输入课时学分" %>
+        </div>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <%= f.label "学分", class: 'col-sm-3 control-label' %>
+      <div class="col-sm-9">
+        <div class="input-group">
+          <div class="input-group-addon"><span class="glyphicon glyphicon-arrow-right"></span></div>
+          <%= f.text_field :fcredit, class: 'form-control', placeholder: "输入学分" %>
         </div>
       </div>
     </div>
