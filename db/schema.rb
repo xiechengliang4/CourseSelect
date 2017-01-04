@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20160909105514) do
     t.integer  "teacher_id"
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
+    t.boolean  "course_open",        default: false
     t.string   "course_description", default: ""
   end
 
