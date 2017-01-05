@@ -48,6 +48,13 @@ class CoursesController < ApplicationController
   def list
     @course=Course.all
     @course=@course-current_user.courses
+    @course_open=Array.new
+    @course.each do |course|
+      if(course.open==true)
+        @course_open << course
+      end
+    end
+    @course=@course_open
   end
 
   def select
@@ -58,10 +65,22 @@ class CoursesController < ApplicationController
   end
 
   def quit
-    @course=Course.find_by(params[:id])
+    @course=Course.find_by_id(params[:id])
     current_user.courses.delete(@course)
     flash={:success => "成功退选课程: #{@course.name}"}
     redirect_to courses_path, flash: flash
+  end
+  
+  def open
+    @course = Course.find_by_id(params[:id])
+    @course.update_attribute("open",true)
+    redirect_to courses_path, flash: {:success =>"已成功开启本课程"}
+  end
+  
+  def close
+    @course=Course.find_by_id(params[:id])
+    @course.update_attribute("open",false)
+    redirect_to courses_path, flash: {:success =>"已成功关闭本课程"}
   end
 
 

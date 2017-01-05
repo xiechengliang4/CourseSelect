@@ -21,6 +21,8 @@ Rails.application.routes.draw do
     member do
       get :select
       get :quit
+      get :open
+      get :close
     end
     collection do
       get :list
@@ -35,6 +37,7 @@ Rails.application.routes.draw do
     
     
   resources :users
+  resources :account_activations, only: [:edit]
 
   get 'sessions/login' => 'sessions#new'
   post 'sessions/login' => 'sessions#create'
