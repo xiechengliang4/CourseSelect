@@ -21,17 +21,12 @@
               <th>培养单位</th>
               <th>课程</th>
               <th>目前分数</th>
-              <th></th>
-              <% if teacher_logged_in? %>
-              <th><%= link_to "未通过", screenout_grade_url(grade),class: 'btn btn-xs btn-info' %></th>
-              <% end %>
               
-
             </tr>
             </thead>
             <tbody>
 
-            <% @grades_fail.each do |grade| %>
+             <% @grades.each do |grade| %>
                 <tr>
                   <td><%= grade.user.num %></td>
                   <td><%= grade.user.name %></td>
