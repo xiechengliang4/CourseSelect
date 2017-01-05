@@ -29,7 +29,13 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :grades, only: [:index, :update]
+  resources :grades do
+    member do
+      get :screenout
+    end
+  end
+    
+    
   resources :users
   resources :account_activations, only: [:edit]
 

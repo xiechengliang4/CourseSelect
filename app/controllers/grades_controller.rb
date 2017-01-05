@@ -16,12 +16,37 @@ class GradesController < ApplicationController
     if teacher_logged_in?
       @course=Course.find_by_id(params[:course_id])
       @grades=@course.grades
+      
+      @grades_fail=Array.new
+        @grades.each do |every_grade|
+            if every_grade.fail then
+               @grade_fail.push every_grade
+            end
+        end   
+      
     elsif student_logged_in?
       @grades=current_user.grades
     else
       redirect_to root_path, flash: {:warning=>"请先登陆"}
     end
   end
+  
+  
+  def screenout
+    @course=Course.find_by_id(params[:course_id])
+    @grades=@course.grades
+
+    @grades.each do |every_grade|
+        if 60-every_grade then
+            @grades.fail=true
+        end
+    end
+
+    @grades.save
+      redirect_to grades_path(course_id: params[:course_id]), flash: {:success => " 仅显示未通过"}
+
+  end
+
 
 
   private
