@@ -12,7 +12,10 @@ class GradesController < ApplicationController
     redirect_to grades_path(course_id: params[:course_id]), flash: flash
   end
 
-  def index     
+  def index  
+    if teacher_logged_in?
+      @course=Course.find_by_id(params[:course_id])
+      @grades=@course.grades
     elsif student_logged_in?
       @grades=current_user.grades
     else
