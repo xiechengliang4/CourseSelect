@@ -1,4 +1,5 @@
 class GradesController < ApplicationController
+  respond_to :html, :xls
 
   before_action :teacher_logged_in, only: [:update]
 
@@ -22,10 +23,22 @@ class GradesController < ApplicationController
       redirect_to root_path, flash: {:warning=>"请先登陆"}
     end
   end
-
-
+  
+  def excel 
+    if teacher_logged_in?
+      @course=Course.find_by_id(params[:course_id])
+      @grades=@course.grades
+      respond_with @grades
+    elsif student_logged_in?
+      @grades=current_user.grades
+      respond_with @grades
+    else
+      redirect_to root_path, flash: {:warning=>"请先登陆"}
+    end
+    
+    
+  end 
   private
-
   # Confirms a teacher logged-in user.
   def teacher_logged_in
     unless teacher_logged_in?
