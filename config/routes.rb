@@ -29,7 +29,15 @@ Rails.application.routes.draw do
     end
   end
   
-  resources :grades, only: [:index, :update]
+  #resources :grades, only: [:index, :update]
+  resources :grades do
+    collection do
+     
+      get :excel
+      
+    end
+  end
+  
   resources :users
   resources :account_activations, only: [:edit]
 

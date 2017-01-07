@@ -1,5 +1,8 @@
 source 'https://gems.ruby-china.org'
 
+gem 'ekuseru'
+gem 'responders', '~>2.0'
+
 gem 'bootstrap-sass', '~> 3.3.7'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.11'
@@ -64,5 +67,3 @@ end
 group :production do
   gem 'rails_12factor'
 end
-
-
