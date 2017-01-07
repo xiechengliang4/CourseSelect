@@ -45,10 +45,17 @@
                 </tr>
             <% end %>
             </tbody>
-            
-            
-          
-          
+
+            </table>
+          <table width="100%">
+            <tr align ="center">
+              <% if !teacher_logged_in? %>
+           <td ><%= link_to "导出成绩单", excel_grades_path(:format =>:xls), class: 'btn btn-success btn-xs'%>
+            <% end %>
+           </td>
+           </tr>
+          </table>
+
         </div>
       </div>
     </div>
