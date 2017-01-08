@@ -14,9 +14,35 @@ class GradesController < ApplicationController
   end
 
   def index  
+    @course = Array.new
     if teacher_logged_in?
+      if(params[:sp] == nil )
+        sp = 1;
+      else
+        sp = params[:sp].to_i
+      end
+      
       @course=Course.find_by_id(params[:course_id])
       @grades=@course.grades
+  
+      if(sp == 2)
+        @grades_fail=Array.new
+        @grades.each do |grade|
+          if grade.grade&&grade.grade<60
+            @grades_fail<<grade
+          end
+        end
+
+        @grades=@grades_fail
+      elsif(sp == 3)
+                @grades_fail=Array.new
+        @grades.each do |grade|
+          if grade.grade&&grade.grade>=60
+            @grades_fail<<grade
+          end
+        end
+        @grades=@grades_fail
+      end
     elsif student_logged_in?
       @grades=current_user.grades
     else
